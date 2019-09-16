@@ -5,18 +5,20 @@
           <div class="header">
             <p>Your Stock Portfolio</p>
           </div>
+          <div class="stock-input">
+              <form [formGroup]="lookupForm" (ngSubmit)="searchStocks()">
+                <search-form [parent]="lookupForm"></search-form>
+                <button class="primary" type="submit" [disabled]="lookupForm.invalid" alt="submit button">Get Quotes</button>
+              </form>
+            </div>
 	      </div>
-      <div *ngIf="loading">
-        Loading...
-      </div>
       <div *ngIf="error">
         Error :(
       </div>
 
-      <div class="section content">
+      <div *ngIf="portfolio" class="section content">
         		<div  *ngFor="let company of portfolio" class="tile-stock">
-                {{company.addstock | json}}
-                <div class="logo-img">
+                <div class="logo-img" alt="company logo">
                   <img src="{{company.url.url}}">
                 </div>
                 <div class="divider-h">
@@ -41,20 +43,8 @@
 
     </div>
 
-    <div class="grid-item btm-grid">
-
-      <div class="section">
-
-		    <div class="stock-input">
-          <form [formGroup]="lookupForm" (ngSubmit)="searchStocks()">
-            <search-form [parent]="lookupForm"></search-form>
-            <button class="primary" type="submit" [disabled]="lookupForm.invalid">Get Quotes</button>
-          </form>
-        </div>
-      </div>
-      <div *ngIf="stock">
-
-        <mat-card class="stock-card">
+    <div  *ngIf="stock" class="btm-grid">
+        <mat-card class="tile-sock">
           <mat-card-header>
             <mat-card-title>{{stock.companyName}}</mat-card-title>
             <mat-card-subtitle>{{stock.symbol}}</mat-card-subtitle>
@@ -69,14 +59,12 @@
             <button mat-button (click)="addToPortfolio(stock)">Add Stock</button>
           </mat-card-actions>
         </mat-card>
-      </div>
-
-
-      <div>
-        Data provided for free by <a href="https://iextrading.com/developer/">IEX</a>. View IEX’s <a
-        href="https://iextrading.com/api-exhibit-a/">Terms of Use</a>.
-      </div>
     </div>
 
+    <div>
+        Data provided for free by <a href="https://iextrading.com/developer/">IEX</a>. View IEX’s <a
+        href="https://iextrading.com/api-exhibit-a/">Terms of Use</a>.
+    </div>
+    
   </div>
 </body>

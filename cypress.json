@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:4200",
+  "projectId": "6ck2do",
+  "video": false,
+  "screenshotsFolder":"./cypress/screenshots"
+}

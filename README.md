@@ -16,7 +16,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Unit tests are setup with Cypress. Run `npm run test` to start up both the angular app and the Cypress cli will handle tests.
 
 ## Running end-to-end tests
 

@@ -11,8 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { SearchForm } from './stock-picker/components/search-form.component';
 
-import { DataService } from './data.service'
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +26,7 @@ import { DataService } from './data.service'
     BrowserAnimationsModule,
     MatCardModule
   ],
-  providers: [ DataService ],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

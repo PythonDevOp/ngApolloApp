@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { DataService } from '../data.service';
+
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
-
 
 const GET_PORTFOLIO =
 gql`
@@ -71,11 +70,9 @@ export class StockPickerComponent implements OnInit {
 
   portfolio: any[] = [];
   loading: boolean;
-  error: any;
   stock: any;
-  foo: any;
 
-  constructor(private apollo: Apollo, private dataItemService: DataService) { }
+  constructor(private apollo: Apollo) { }
 
     // get the portfolio
    ngOnInit() {
@@ -104,10 +101,10 @@ export class StockPickerComponent implements OnInit {
     }
 
     addToPortfolio(stock){
-        console.log("stock", stock)
-        delete stock.__typename
-        delete stock.price.__typename
-        delete stock.url.__typename
+      //remove reference to old type
+      delete stock.__typename
+      delete stock.price.__typename
+      delete stock.url.__typename
       this.apollo
         .mutate({
           mutation: UPDATE_PORTFOLIO,
@@ -120,9 +117,9 @@ export class StockPickerComponent implements OnInit {
            input: stock
           }
         })
-        .subscribe(({data})=>{
+        .subscribe(({data}:any)=>{
             this.portfolio.push(data.addStock);
-            console.log(data.addStock)
+            this.stock = ''
         }), (error) =>{
            console.log("error", error);
         };
